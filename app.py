@@ -19,3 +19,4 @@ stores = [
 
 def get_store():
     return {"stores":stores}
+# 
