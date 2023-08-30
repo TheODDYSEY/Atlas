@@ -50,4 +50,10 @@ def get_store(name):
             return store
     return  {"message":"Store not found"},404
 
-   
+# return items from a store in aas a dict 
+@app.get("/store/<string:name>/item")
+def get_item_in_stores(name):
+    for store in stores:
+        if store["name"] == name:
+            return {"items":store["items"]}
+    return {"message":"Store not found"},404    
