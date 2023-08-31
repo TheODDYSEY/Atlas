@@ -43,7 +43,7 @@ def create_item(name):
     return {"Message":"Store not found"},404    
 
 # get specific store name 
-@app.get("/store/<string:name>") #GET http://127.0.0.1:5000/store/My Store
+@app.get("/store/<string:name>") #GET http://127.0.0.1:5005/store/My Store
 def get_store(name):
     for store in stores:
         if store["name"] == name:
@@ -51,7 +51,7 @@ def get_store(name):
     return  {"message":"Store not found"},404
 
 # return items from a store in aas a dict 
-@app.get("/store/<string:name>/item") #GET http://127.0.0.1:5000/store/My Store/item
+@app.get("/store/<string:name>/item") #GET http://127.0.0.1:5005/store/My Store/item
 def get_item_in_store(name):
     for store in stores:
         if store["name"] == name:
