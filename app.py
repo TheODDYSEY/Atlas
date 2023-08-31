@@ -20,7 +20,7 @@ stores = [
 
 @app.get("/store")  # http://127.0.0.1:5000/store
 
-def get_store():
+def get_stores():
     return {"stores":stores}
 #
 # create stores 
@@ -52,8 +52,8 @@ def get_store(name):
 
 # return items from a store in aas a dict 
 @app.get("/store/<string:name>/item")
-def get_item_in_stores(name):
+def get_item_in_store(name):
     for store in stores:
         if store["name"] == name:
-            return {"items":store["items"]}
+            return store["items"]
     return {"message":"Store not found"},404    
