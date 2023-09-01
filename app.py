@@ -1,19 +1,10 @@
 from flask import Flask,request
+from db import items,stores
 
 app = Flask(__name__)
 
 
-stores = [
-    {
-        "name":"My Store",
-        "items":[
-            {
-            "name":"Chair",
-            "price": 15.99
-            }
-        ]
-    }
-] 
+
 
 # JSON is just a long string that follows a specific format like the one above 
 #  a python dictionary is returned as a JSON
