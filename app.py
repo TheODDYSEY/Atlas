@@ -33,7 +33,7 @@ def create_store():
 def create_item(name):
     item_data = request.get_json()
     if item_data["store_id"] not in stores:
-        return {"message":"Store not found"},404
+        abort (404,message="Store not found")
     
     item_id = uuid.uuid4().hex
     item = {**item_data, "id": item_id}
@@ -51,11 +51,11 @@ def get_all_items():
 # NEW FUNCTION
 # new function 
 @app.get("/store/<string:store_id>") #GET http://127.0.0.1:5005/store/My Store
-def get_store(stores_id):
+def get_store(store_id):
     try:
-        return stores[stores_id]
+        return stores[store_id]
     except KeyError:
-        abort(404,message="Store not found"),401
+        abort(404,message="Store not found")
 
 
 # NEW FUNCTION
@@ -66,7 +66,7 @@ def get_item(item_id):
         return items[item_id]
     except:
         KeyError
-    abort(404,message="Item not found"),201
+    abort(404,message="Item not found")
 
 
 
