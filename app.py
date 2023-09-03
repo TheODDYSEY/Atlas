@@ -42,6 +42,15 @@ def create_item(name):
     return item ,201
 
 
+# delete all items
+@app.delete("/item/<string:item_id>")
+def delete_item(item_id):
+    try:
+        del items[item_id]
+        return {"message": "Item deleted."}
+    except KeyError:
+        abort(404, message="Item not found.")
+
 # gets all items 
 @app.get("/item")
 def get_all_items():
