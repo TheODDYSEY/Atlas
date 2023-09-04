@@ -31,9 +31,9 @@ class StoresList(MethodView):
     def post(self):  
             store_data = request.get_json()
             if "name" not in store_data:
-                 abort(
+                abort(
                         400,
-                         message="Bad request. Ensure 'name' is included in the JSON payload.",
+                        message="Bad request. Ensure 'name' is included in the JSON payload.",
 
                                 )
             for store in stores.values():
