@@ -6,7 +6,7 @@ from flask_smorest import Blueprint,abort
 from db import items
 
 
-blp = Blueprint("stores",__name__,description="Operations on Items")
+blp = Blueprint("Items",__name__,description="Operations on Items")
 
 @blp.route("/item/<string:item_id>")
 class Item(MethodView):
