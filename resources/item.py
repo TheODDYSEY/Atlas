@@ -4,6 +4,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint,abort
 
 from db import items
+from schema import ItemSchema,ItemUpdateSchema
 
 
 blp = Blueprint("Items",__name__,description="Operations on Items")
@@ -49,6 +50,7 @@ class ItemList(MethodView):
     def get(self):
         return {"items":list(items.values())}
     
+    @blp.arguments(ItemSchema)
     def post(self):
         item_data = request.get_json()
   
