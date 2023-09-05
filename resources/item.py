@@ -52,7 +52,7 @@ class ItemList(MethodView):
         return {"items": list(items.values())}
 
     @blp.arguments(ItemSchema)
-    def post(self):
+    def post(self,item_data):
         item_data = request.get_json()
 
         for item in items.values():
