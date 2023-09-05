@@ -51,18 +51,7 @@ class ItemList(MethodView):
     
     def post(self):
         item_data = request.get_json()
-    # Here not only we need to validate data exists,
-    # But also what type of data. Price should be a float,
-    # for example.
-        if (
-            "price" not in item_data
-            or "store_id" not in item_data
-            or "name" not in item_data
-            ):
-                abort(
-                    400,
-                    message="Bad request. Ensure 'price', 'store_id', and 'name' are included in the JSON payload.",
-                )
+  
         for item in items.values():
             if (
             item_data["name"] == item["name"]
