@@ -27,16 +27,6 @@ class Item(MethodView):
             abort(404, message="Item not found.")
 
     def put(Self, item_id):
-        item_data = request.get_json()
-        # There's  more validation to do here!
-        # Like making sure price is a number, and also both items are optional
-        # You should also prevent keys that aren't 'price' or 'name' to be passed
-        # Difficult to do with an if statement...
-        if "price" not in item_data or "name" not in item_data:
-            abort(
-                400,
-                message="Bad request. Ensure 'price', and 'name' are included in the JSON payload.",
-            )
         try:
             item = items[item_id]
             item |= item_data
