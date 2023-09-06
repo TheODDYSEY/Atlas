@@ -53,8 +53,6 @@ class ItemList(MethodView):
 
     @blp.arguments(ItemSchema)
     def post(self,item_data):
-        item_data = request.get_json()
-
         for item in items.values():
             if (
                     item_data["name"] == item["name"]
