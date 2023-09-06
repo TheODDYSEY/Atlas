@@ -25,8 +25,8 @@ class Item(MethodView):
             return {"message": "Item deleted."}
         except KeyError:
             abort(404, message="Item not found.")
-
-    def put(Self, item_id):
+    @blp.arguments(ItemUpdateSchema)
+    def put(Self, item_data ,item_id):
         try:
             item = items[item_id]
             item |= item_data
