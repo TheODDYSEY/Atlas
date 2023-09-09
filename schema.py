@@ -6,7 +6,7 @@ class PlainItemSchema(Schema):
     name = fields.Str(required=True)
     price = fields.Float(required=True)
 
-  
+
 class PlainStoreSchema(Schema):
     id = fields.Str(dump_only=True)
     name = fields.Str(required=True)         
