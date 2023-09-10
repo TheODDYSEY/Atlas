@@ -26,8 +26,11 @@ def create_app(db_url=None):
     db.init_app(app)
     api = Api(app)
 
-    with app.app_context():
+    @app.before_first_request
+    def create_tables():
         db.create_all()
+    
+    app.debug = True    
 
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)
