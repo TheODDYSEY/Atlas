@@ -17,7 +17,7 @@ class Item(MethodView):
         except:
             KeyError
 
-    abort(404, message="Item not found")
+        return abort(404, message="Item not found")
 
     def delete(self, item_id):
         try:
