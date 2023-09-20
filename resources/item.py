@@ -34,7 +34,9 @@ class Item(MethodView):
             item = ItemModel(id=item_id,**item_data)
             
         db.session.add(item)
-        db.session.commit()        
+        db.session.commit()  
+        
+        return item      
 
 
 @blp.route("/item")
