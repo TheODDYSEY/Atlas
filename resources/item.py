@@ -22,6 +22,7 @@ class Item(MethodView):
     def delete(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         raise NotImplementedError("Deleting an item is not implemented ")
+    
     @blp.arguments(ItemUpdateSchema)
     @blp.response(200,ItemSchema)
     def put(self, item_data ,item_id):
@@ -31,6 +32,7 @@ class Item(MethodView):
             item.name = item_data["name"]
         else:
             item = ItemModel(id=item_id,**item_data)
+            
         db.session.add(item)
         db.session.commit()        
 
