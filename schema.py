@@ -9,7 +9,7 @@ class PlainItemSchema(Schema):
 
 class PlainStoreSchema(Schema):
     id = fields.Int(dump_only=True)
-    name = fields.Str()
+    name = fields.Str(required=True)
 
 
 class PlainTagSchema(Schema):
