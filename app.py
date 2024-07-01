@@ -35,9 +35,11 @@ def create_app(db_url=None):
     app.config["JWT_SECRET_KEY"]="273604428659873579801483416558517889978"
     jwt = JWTManager(app)
     
-
-    app.config["JWT_SECRET_KEY"] = "jose"
-    jwt = JWTManager(app)
+    @jwt.additional_claims_loader
+    def add_claims_to_jwt(identity):
+        if identity == 1:
+            return {"is_admin": True}
+        return {"is_admin": False}
 
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
