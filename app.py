@@ -4,7 +4,7 @@ import secrets
 from flask import Flask
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
-
+from flask import Flask, jsonify
 
 import models
 
@@ -34,6 +34,40 @@ def create_app(db_url=None):
     
     app.config["JWT_SECRET_KEY"]="273604428659873579801483416558517889978"
     jwt = JWTManager(app)
+    
+
+    app.config["JWT_SECRET_KEY"] = "jose"
+    jwt = JWTManager(app)
+
+    @jwt.expired_token_loader
+    def expired_token_callback(jwt_header, jwt_payload):
+        return (
+            jsonify({"message": "The token has expired.", "error": "token_expired"}),
+            401,
+        )
+
+    @jwt.invalid_token_loader
+    def invalid_token_callback(error):
+        return (
+            jsonify(
+                {"message": "Signature verification failed.", "error": "invalid_token"}
+            ),
+            401,
+        )
+
+    @jwt.unauthorized_loader
+    def missing_token_callback(error):
+        return (
+            jsonify(
+                {
+                    "description": "Request does not contain an access token.",
+                    "error": "authorization_required",
+                }
+            ),
+            401,
+        )
+
+
     
     
 
