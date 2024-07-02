@@ -1,6 +1,5 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from passlib.hash import pbkdf2_sha256
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
@@ -8,13 +7,13 @@ from flask_jwt_extended import (
     get_jwt,
     jwt_required,
 )
-
-
+from passlib.hash import pbkdf2_sha256
 
 from db import db
 from models import UserModel
 from schemas import UserSchema
 from blocklist import BLOCKLIST
+
 
 blp = Blueprint("Users", "users", description="Operations on users")
 
@@ -34,9 +33,8 @@ class UserRegister(MethodView):
         db.session.commit()
 
         return {"message": "User created successfully."}, 201
-    
-    
-    
+
+
 @blp.route("/login")
 class UserLogin(MethodView):
     @blp.arguments(UserSchema)
@@ -51,19 +49,8 @@ class UserLogin(MethodView):
             return {"access_token": access_token, "refresh_token": refresh_token}, 200
 
         abort(401, message="Invalid credentials.")
-        
-@blp.route("/refresh")
-class TokenRefresh(MethodView):
-    @jwt_required(refresh=True)
-    def post(self):
-        current_user = get_jwt_identity()
-        new_token = create_access_token(identity=current_user, fresh=False)
-        # Make it clear that when to add the refresh token to the blocklist will depend on the app design
-        jti = get_jwt()["jti"]
-        BLOCKLIST.add(jti)
-        return {"access_token": new_token}, 200
-            
-            
+
+
 @blp.route("/logout")
 class UserLogout(MethodView):
     @jwt_required()
@@ -73,7 +60,6 @@ class UserLogout(MethodView):
         return {"message": "Successfully logged out"}, 200
 
 
-            
 @blp.route("/user/<int:user_id>")
 class User(MethodView):
     """
@@ -92,4 +78,16 @@ class User(MethodView):
         user = UserModel.query.get_or_404(user_id)
         db.session.delete(user)
         db.session.commit()
-        return {"message": "User deleted."}, 200    
+        return {"message": "User deleted."}, 200
+
+
+@blp.route("/refresh")
+class TokenRefresh(MethodView):
+    @jwt_required(refresh=True)
+    def post(self):
+        current_user = get_jwt_identity()
+        new_token = create_access_token(identity=current_user, fresh=False)
+        # Make it clear that when to add the refresh token to the blocklist will depend on the app design
+        jti = get_jwt()["jti"]
+        BLOCKLIST.add(jti)
+        return {"access_token": new_token}, 200
