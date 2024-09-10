@@ -1,4 +1,13 @@
-# REST API with Flask ,PostgreSQL, SQLAlchemy  and Docker
+# REST API with Flask ,PostgreSQL ,SQLAlchemy  and Docker
+
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+[![Interact with API](https://img.shields.io/badge/Interact_with_API-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/theoddysey/rest-api-flask-python/collection/4c5nmyt/rest-api-flask-python)
+
 
 A robust RESTful API developed using Flask, providing comprehensive CRUD functionalities for managing stores, items, and tags, complete with secure user authentication, authorization, and detailed role-based access control. This project serves as an excellent foundation for scalable e-commerce or inventory management systems, leveraging Python's simplicity and the power of RESTful architecture.
 ![REST API Architecture](./rest-api.png)
