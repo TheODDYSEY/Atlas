@@ -268,7 +268,7 @@ The API follows robust error handling mechanisms using Flask's error handler met
 
 To facilitate easy testing and development, a Postman collection is included in the repository. It contains all API endpoints, sample requests, and responses.
 
-- [Access the Postman File ](https://www.postman.com/theoddysey/rest-api-flask-python/overview)
+- [Access the Postman File ](https://www.postman.com/theoddysey/rest-api-flask-python/collection/4c5nmyt/rest-api-flask-python)
 
 ## Testing
 
