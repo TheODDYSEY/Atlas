@@ -258,9 +258,7 @@ The API supports CRUD operations across several entities. Below are detailed des
     ```json
     {
       "username": "newUser",
-      "password": "
-
-password123"
+      "password": "password123"
     }
     ```
   - **Response**: Returns a JWT for subsequent requests.
